@@ -1,0 +1,126 @@
+{% extends 'front_base.html.twig' %}
+
+{% set totalHt = 0 %}
+{% set totalTTC = 0 %}
+{% block body %}
+<!--================ Start Header Menu Area =================-->
+
+
+<!-- ================ start banner area ================= -->
+<section class="blog-banner-area" id="category">
+    <div class="container h-100">
+        <div class="blog-banner">
+            <div class="text-center">
+                <h1>Shopping Cart</h1>
+                <nav aria-label="breadcrumb" class="banner-breadcrumb">
+
+                    <ol class="breadcrumb">
+
+                        <li class="breadcrumb-item"><a href="front_accuil">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Votre Panier</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ================ end banner area ================= -->
+
+
+
+<!--================Cart Area =================-->
+<section class="cart_area">
+    <div class="container">
+
+        {% for flashMessage in app.session.flashbag.get('success') %}
+            <div class="notification is-success">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+        <div class="cart_inner">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Produit</th>
+                        <th scope="col">Prix</th>
+                        <th scope="col">Quantité</th>
+                        <th scope="col">Total</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% if produits|length == 0 %}
+                    <tr>
+                        <td colspan="4"><center>Votre panier est vide </center></td>
+                    </tr>
+                    {% endif %}
+                    {% for produit in produits  %}
+                    <tr>
+                        <form action="{{ path("ajouterpanier",{'id':produit.id}) }}" method="get">
+                        <td>
+                            <div class="media">
+                                <div class="d-flex">
+                                    <img src="{{ asset('front_template/img/category/' ~ produit.image) }}" style="height: 100px;width: 150px" alt="">
+                                </div>
+                                <div class="media-body">
+                                    <p>{{ produit.nom }}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <h5>{{ produit.prix }}</h5>
+                        </td>
+                        <td>
+                            <select name="quantite" onchange="this.form.submit()" class="span4">
+                                {% for i in 1..(produit.quantite) %}
+                                    <option value="{{ i }}" {% if i == panier[produit.id] %} selected="selected" {% endif %}  >{{ i }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td>
+                            <h5>{{ produit.prix * panier[produit.id] }}  DT</h5>
+                        </td>
+                            <td>
+                               <a href="{{ path('supprimerpanierp',{'id':produit.id}) }}"><i class="fa fa-times" aria-hidden="true"></i></a>
+
+                            </td>
+                    </tr>
+                        {% set totalHt = totalHt + (produit.prix * panier[produit.id]) %}
+                        {% set totalTTC = totalTTC + (produit.prix * panier[produit.id]) %}
+                    {% endfor %}
+                    </tbody>
+                    </form>
+
+
+                </table>
+            {% if produits|length != 0 %}
+            <table style="float: right; " cellspacing=12 cellpadding=20 >
+                    <td>
+                        <h5>Total :</h5>
+                    </td>
+                    <td>
+                        <h5>{{ totalHt }}DT</h5>
+                    </td>
+            </table>
+            <br><br><br><br><br>
+                <div style="float: right" class="checkout_btn_inner d-flex align-items-center">
+                    <button class="gray_btn" style="background-color: #0d7eff ; color: black" href="#">Passer votre commande</button>
+                    {% endif %}
+                    <a class="gray_btn" style="color: black" href="{{ path('category') }}">Continueer vos achet</a>
+                </div>
+            <br><br><br>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Cart Area =================-->
+
+
+
+<!--================ Start footer Area  =================-->
+
+<!--================ End footer Area  =================-->
+
+{% endblock %}

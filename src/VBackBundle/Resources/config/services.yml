@@ -1,0 +1,4 @@
+services:
+#    v_back.example:
+#        class: VBackBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

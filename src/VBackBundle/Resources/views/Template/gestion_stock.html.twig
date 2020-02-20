@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+{% block titre %} Gestion du stocks {% endblock %}
+
+{% block body %}
+    <div class="pcoded-content">
+        <div class="pcoded-inner-content">
+            <div class="main-body">
+                <div class="page-wrapper">
+
+                    <div class="page-body">
+
+                        <div class="page-header card">
+                            <div class="card-block">
+                                <h5 class="m-b-10">Gestion des stocks
+                                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                                    <span>
+                                         <button  class="btn btn-success" ><a href="{{ path("ajouter_produit")}}" ><i class="icofont icofont-plus"></i>Ajouter</a></button>
+
+                                                                             </span>
+
+
+                                </h5>
+                                <ul class="breadcrumb-title b-t-default p-t-10">
+                                    <li class="breadcrumb-item">
+                                        <a href="index.html"> <i class="fa fa-home"></i> </a>
+                                    </li>
+                                    <li class="breadcrumb-item"><a href="#!">Gestion des stocks</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Listes des article</h5>
+
+                                <div class="card-header-right">
+                                    <ul class="list-unstyled card-option">
+                                        <li><i class="fa fa-chevron-left"></i></li>
+                                        <li><i class="fa fa-window-maximize full-card"></i></li>
+                                        <li><i class="fa fa-minus minimize-card"></i></li>
+                                        <li><i class="fa fa-refresh reload-card"></i></li>
+                                        <li><i class="fa fa-times close-card"></i></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                            <div class="card-block table-border-style">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Ref</th>
+                                            <th>Nom</th>
+                                            <th>Image</th>
+                                            <th>Catégorie</th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for produits in produits %}
+                                        <tr>
+
+                                            <th scope="row">{{ produits.id }}</th>
+                                            <td>{{ produits.reference }} </td>
+                                            <td>{{ produits.nom }}</td>
+                                            <td><img src="{{ asset('front_template/img/category/' ~ produits.image) }}" height="50px" width="50px">
+                                            </td>
+                                            <td>{{ produits.category }}</td>
+                                            <td>
+                                            <a href="{{ path("modifier_produit",{'id':produits.id}) }}" ><i class="fa fa-edit" style="font-size:18px"></i></a>
+                                            <a href="{{ path("supprimer_produit",{'id':produits.id}) }}" ><i class="fa fa-trash" style="font-size:18px"></i>
+
+                                            <a href="#"> <i class="fa fa-eye" style="font-size:18px"></i></a>
+
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+                    </div>
+
+                    <div id="styleSelector">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

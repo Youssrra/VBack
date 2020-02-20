@@ -1,0 +1,48 @@
+v_back_homepage:
+    path:     /
+    defaults: { _controller: VBackBundle:Default:index }
+layout:
+    path:     /layout
+    defaults: { _controller: VBackBundle:Default:layout }
+accuil:
+    path:     /accuil
+    defaults: { _controller: VBackBundle:Default:accuil }
+gestion_client:
+    path:     /gestion_client
+    defaults: { _controller: VBackBundle:Default:gestion_client }
+gestion_partenaire:
+    path:     /gestion_partenaire
+    defaults: { _controller: VBackBundle:Default:gestion_partenaire }
+gestion_administrateur:
+    path:     /gestion_administrateur
+    defaults: { _controller: VBackBundle:Default:gestion_administrateur }
+gestion_annonce:
+    path:     /gestion_annonce
+    defaults: { _controller: VBackBundle:Default:gestion_annonce }
+gestion_club:
+    path:     /gestion_club
+    defaults: { _controller: VBackBundle:Default:gestion_club }
+gestion_commande:
+    path:     /gestion_commande
+    defaults: { _controller: VBackBundle:Default:gestion_commande }
+gestion_evenement:
+    path:     /gestion_evenement
+    defaults: { _controller: VBackBundle:Default:gestion_evenement }
+gestion_livraison:
+    path:     /gestion_livraison
+    defaults: { _controller: VBackBundle:Default:gestion_livraison }
+gestion_publicite:
+    path:     /gestion_publicite
+    defaults: { _controller: VBackBundle:Default:gestion_publicite }
+gestion_reclamation:
+    path:     /gestion_reclamation
+    defaults: { _controller: VBackBundle:Default:gestion_reclamation }
+gestion_stock:
+    path:     /gestion_stock
+    defaults: { _controller: GProduitBundle:Produit:afficher }
+login:
+    path:     /loginA
+    defaults: { _controller: VBackBundle:Default:login }
+gestion_categorie:
+    path:     /gestion_categorie
+    defaults: { _controller: GProduitBundle:Categorie:afficher }

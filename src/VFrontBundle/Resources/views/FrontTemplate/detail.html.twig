@@ -1,0 +1,82 @@
+{% extends 'front_base.html.twig' %}
+
+{% block body %}
+
+    <!-- ================ start banner area ================= -->
+    <section class="blog-banner-area" id="blog">
+        <div class="container h-100">
+            <div class="blog-banner">
+                <div class="text-center">
+                    <h1>Shop Single</h1>
+                    <nav aria-label="breadcrumb" class="banner-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Shop Single</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ================ end banner area ================= -->
+
+
+    <!--================Single Product Area =================-->
+    <div class="product_image_area">
+        <div class="container">
+            <div class="row s_product_inner">
+
+                <div class="col-lg-6">
+
+                        <div class="single-prd-item">
+                            <img class="img-fluid" src="{{ asset('front_template/img/category/' ~ produit.image) }}" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-5 offset-lg-1">
+                    <div class="s_product_text">
+                        <h3>{{ produit.nom }}</h3>
+                        <h2>{{ produit.prix }}</h2>
+                        <ul class="list">
+                            <li><a class="active" href="#"><span>Category</span> : {{ produit.category }} </a></li>
+                            {% if produit.quantite != 0 %}
+                            <li><a href="#"><span>Availibility</span> : En Stock</a></li>
+                            {% else %}
+                                <li><a href="#"><span>Availibility</span> : En Rupture de Stock</a></li>
+                            {% endif %}
+                        </ul>
+                        <p>{{ produit.description }}</p>
+
+                        {% if panier[produit.id] is not defined %}
+                        <label>Quantite:</label>
+                        <form action="{{ path("ajouterpanier",{'id':produit.id}) }}" method="get">
+
+                            <select name="quantite" class="span4">
+                            {% for i in 1..(produit.quantite) %}
+                                <option value="{{ i }}">{{ i }}</option>
+                                {% endfor %}
+                            </select><br>
+                            <div>
+                                <button class="button primary-btn">Ajouter au panier</button>
+                            </div>
+                        </form>
+                            {% else %}
+                                <div>
+                                    <a href="{{ path ('panier') }}" class="button primary-btn">Ce produit existe déja dans votre panier</a>
+                                </div>
+
+{% endif %}
+
+
+                        </div>
+                </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--================End Single Product Area =================-->
+{% endblock %}

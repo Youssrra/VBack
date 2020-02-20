@@ -1,0 +1,32 @@
+v_front_homepage:
+    path:     /
+    defaults: { _controller: VFrontBundle:Default:index }
+front_accuil:
+    path:     /front_accuil
+    defaults: { _controller: VFrontBundle:Default:index }
+panier:
+    path:     /panier
+    defaults: { _controller: GProduitBundle:Panier:panier }
+category:
+    path:     /category
+    defaults: { _controller: GProduitBundle:Panier:afficher }
+
+afficherPanier:
+    path:     /afficherPanier
+    defaults: { _controller: VFrontBundle:Panier:afficherPanier }
+
+detail:
+    path:     /detail/{id}
+    defaults: { _controller: GProduitBundle:Produit:detail }
+
+ajouterpanier:
+    path:     /ajouterpanier/{id}
+    defaults: { _controller: GProduitBundle:Panier:ajouterpanier }
+
+supprimerpanierp:
+    path:     /supprimerpanierp/{id}
+    defaults: { _controller: GProduitBundle:Panier:supprimerpanierp }
+
+panierCm:
+    path:     /panierCm
+    defaults: { _controller: GProduitBundle:Panier:menu }
